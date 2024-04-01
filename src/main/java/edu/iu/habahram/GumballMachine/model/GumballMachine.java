@@ -58,7 +58,6 @@ public class GumballMachine implements IGumballMachine {
         String message = "";
         if (state.equalsIgnoreCase(SOLD)) {
             message = "You can only turn once";
-
         } else if (state.equalsIgnoreCase(NO_QUARTER)) {
             message = "Cannot buy gumball with no quarter.";
         } else if (state.equalsIgnoreCase(SOLD_OUT)) {
@@ -72,7 +71,6 @@ public class GumballMachine implements IGumballMachine {
 
     }
 
-    @Override
     public TransitionResult dispense(){
         boolean succeeded = false;
         String message = "";
@@ -86,8 +84,7 @@ public class GumballMachine implements IGumballMachine {
                 state = NO_QUARTER;
             }
             succeeded = true;
-        }
-        else if (state.equalsIgnoreCase(NO_QUARTER)){
+        }else if (state.equalsIgnoreCase(NO_QUARTER)){
             message = "You need to pay first";
         }else if (state.equalsIgnoreCase(SOLD_OUT)) {
             message = "No gumball dispensed";
