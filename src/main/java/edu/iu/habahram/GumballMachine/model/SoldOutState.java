@@ -36,5 +36,3 @@ public class SoldOutState implements IState{
         return GumballMachineState.NO_QUARTER.name();
     }
 }
-
-}
