@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 public class GumballService implements IGumballService{
-
+    int refillCount;
     IGumballRepository gumballRepository;
 
     public GumballService(IGumballRepository gumballRepository) {
@@ -31,6 +31,12 @@ public class GumballService implements IGumballService{
         return transitionSwitch(id, "turn");
     }
 
+    @Override
+    public TransitionResult refill(String id, int count) throws IOException{
+        refillCount = count;
+        return transitionSwitch(id, "refill");
+    }
+
 
     public TransitionResult transitionSwitch(String id, String method) throws IOException {
         TransitionResult result = new TransitionResult(false, "", "", 0);
@@ -40,6 +46,7 @@ public class GumballService implements IGumballService{
             case "insert" -> machine.insertQuarter();
             case "eject" -> machine.ejectQuarter();
             case "turn" -> machine.turnCrank();
+            case "refill" -> machine.refill(refillCount);
             default -> result;
         };
         if(result.succeeded()){

@@ -17,6 +17,7 @@ public class GumballMachine2 implements IGumballMachine{
         return count;
     }
 
+
     public void setCount(int count) {
         this.count = count;
     }
@@ -57,6 +58,11 @@ public class GumballMachine2 implements IGumballMachine{
     public TransitionResult turnCrank() {
         state.turnCrank();
         return state.dispense();
+    }
+
+    @Override
+    public TransitionResult refill(int count){
+        return state.refill(count);
     }
 
     @Override
